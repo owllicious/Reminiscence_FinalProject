@@ -43,6 +43,11 @@ public class Interactions : MonoBehaviour , IInteractable
     [Header("Sound")]
 
     [SerializeField] private AudioSource _audioSource;
+
+    [Header("Prototyping")] //Prototype for now in a simple way
+
+    [SerializeField] Transform _AstronomyRoom; //Everything inside the astronomy room that needs to be turned when button pressed
+
     private void Start()
     {
         mainCamera = Camera.main;
@@ -80,13 +85,13 @@ public class Interactions : MonoBehaviour , IInteractable
             PickUp();
             AdditionalText();
         }
-        if(this.CompareTag("Zoom"))
+        if(this.CompareTag("Zoom")) //Closer Look
         {
 
             CloserLook();
             AdditionalText();
         }
-
+        
         if(this.TryGetComponent(out SwapingSign ss))
         {
             ss.Interact();
@@ -107,8 +112,13 @@ public class Interactions : MonoBehaviour , IInteractable
         _animator.Play(_animationName, 0, 0.25f);  //Play the animation
         Debug.Log("Door Close"); // Debugging
     }
-    private void Press() // Preforms the action the button is meant to do
+    private void Press() // Preforms the action the button is meant to do -- Telescope ProtoType
     {
+        float _temp;
+        _temp = _AstronomyRoom.transform.rotation.y;
+        _temp = _temp + 90;
+        
+        //_AstronomyRoom.transform.rotation.y = _temp;
         Debug.Log("Button Pressed"); // Create Pressing Action
     }
     private void PickUp() // Adds the Item to your inventory 
